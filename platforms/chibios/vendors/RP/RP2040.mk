@@ -3,10 +3,6 @@
 ##############################################################################
 COMMON_VPATH += $(PLATFORM_PATH)/$(PLATFORM_KEY)/$(DRIVER_DIR)/vendor/$(MCU_FAMILY)/$(MCU_SERIES)
 
-ifeq ($(strip $(WS2812_DRIVER)), vendor)
-    OPT_DEFS += -DRP_DMA_REQUIRED=TRUE
-endif
-
 #
 # Raspberry Pi Pico SDK Support
 ##############################################################################
@@ -84,6 +80,7 @@ PICOSDKINTRINSICSINC =  $(PICOSDKROOT)/src/common/pico_base/include \
 # integer division intrinsics utilizing the RP2040 hardware divider
 OPT_DEFS += -DPICO_DIVIDER_IN_RAM=1
 OPT_DEFS += -DPICO_DIVIDER_DISABLE_INTERRUPTS=1
+OPT_DEFS += -DRP_DMA_REQUIRED=TRUE
 
 CFLAGS += -Wl,--wrap=__aeabi_idiv
 CFLAGS += -Wl,--wrap=__aeabi_idivmod
